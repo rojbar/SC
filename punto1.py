@@ -1,5 +1,6 @@
 import re
 import Corridas
+import ChiCuadrado
 import util
 #https://docs.python.org/3/howto/regex.html#regex-howto
 
@@ -69,4 +70,11 @@ def puntod():
     CONFIANZA = 0.05
     Corridas.mostrarCorridas(list(map(lambda x: x/util.max(datos_puntoa), datos_puntoa)), CONFIANZA)
     Corridas.mostrarCorridas(list(map(lambda x: x/util.max(datos_puntob), datos_puntob)), CONFIANZA)
-#e 
+
+#e aplicar a ambos puntos pruebas de chi cuadrado. Con una confianza del 5%
+def puntoe():
+    datos_puntoa = puntoa()
+    datos_puntob = puntob()
+    CONFIANZA = 0.05
+    ChiCuadrado.chiCuadradoTabla(list(map(lambda x: x/util.max(datos_puntoa), datos_puntoa)), 0.05)
+    ChiCuadrado.chiCuadradoTabla(list(map(lambda x: x/util.max(datos_puntob), datos_puntob)), 0.05)
