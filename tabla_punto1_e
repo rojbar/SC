@@ -1,5 +1,5 @@
 X^2 = 3047.232
-X^2crit = 43.773
+X^2crit = 44.985
 El generador no es bueno en cuanto a uniformidad dmcalc  no es menor o igual a dmcritico
 +-------------------+------+-------+----------------+
 | clase             |   FO |    FE |   (FE-FO)^2/FE |
@@ -69,7 +69,7 @@ El generador no es bueno en cuanto a uniformidad dmcalc  no es menor o igual a d
 | [0.96875, 1.0]    |    1 | 31.25 |         29.282 |
 +-------------------+------+-------+----------------+
 X^2 = 1149.552
-X^2crit = 43.773
+X^2crit = 44.985
 El generador no es bueno en cuanto a uniformidad dmcalc  no es menor o igual a dmcritico
 +-------------------+------+-------+----------------+
 | clase             |   FO |    FE |   (FE-FO)^2/FE |
