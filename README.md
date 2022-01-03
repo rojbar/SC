@@ -1,1 +1,5 @@
 # SC
+## Dependencias
+- tabulate
+
+
