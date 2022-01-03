@@ -67,6 +67,6 @@ def puntod():
     datos_puntoa = puntoa()
     datos_puntob = puntob()
     CONFIANZA = 0.05
-    Corridas.mostrarCorridas(list(map(lambda x: x/util.max(datos_puntoa), datos_puntoa)))
-    Corridas.mostrarCorridas(list(map(lambda x: x/util.max(datos_puntob), datos_puntob)))
+    Corridas.mostrarCorridas(list(map(lambda x: x/util.max(datos_puntoa), datos_puntoa)), CONFIANZA)
+    Corridas.mostrarCorridas(list(map(lambda x: x/util.max(datos_puntob), datos_puntob)), CONFIANZA)
 #e 
