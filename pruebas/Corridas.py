@@ -75,7 +75,7 @@ def corridasArribaAbajoMedia(datos,confianza):
         total_corridas, 
         media_esperada_corridas, 
         desviacion_estandar,
-        estadistico, 
+        abs(estadistico), 
         estadistico_normal[confianza], 
         es_random,
         rango]
