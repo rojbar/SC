@@ -5,3 +5,11 @@ def max(datos):
         if(num >= max):
             max = num
     return max
+
+#normalizacion de numero al rango [0,1]
+def normalizar(datos):
+    datos_normalizados = []
+    maximo = max(datos)
+    for dato in datos:
+        datos_normalizados.append(dato/maximo)
+    return datos_normalizados
