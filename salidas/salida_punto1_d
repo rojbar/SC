@@ -1,0 +1,22 @@
+rango de corridas: [442.55901975429924, 500.8769802457008]
+Media de los datos: 0.30900000000000044
+Total positivos: 379
+Total negativos: 621
+Total corridas: 471
+Media esperada corridas: 471.718
+Desviacion estandar: 14.877030737602432
+Estadistico calculado: 0.048262318782822514
+Estadistico normal: 1.96
+Es el generador aleatorio? : True
+
+
+rango de corridas: [460.0281140500811, 520.6558859499188]
+Media de los datos: 0.1974831932773114
+Total positivos: 427
+Total negativos: 573
+Total corridas: 413
+Media esperada corridas: 490.342
+Desviacion estandar: 15.46626834179533
+Estadistico calculado: 5.000689131391477
+Estadistico normal: 1.96
+Es el generador aleatorio? : False
