@@ -1,6 +1,6 @@
 import re
-import Corridas
-import ChiCuadrado
+import pruebas.Corridas as Corridas
+import pruebas.ChiCuadrado as ChiCuadrado
 import util
 #https://docs.python.org/3/howto/regex.html#regex-howto
 

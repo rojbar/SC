@@ -1,5 +1,5 @@
-import KolmogorovSmirov
-import Corridas
+import  pruebas.KolmogorovSmirov as KolmogorovSmirov
+import pruebas.Corridas as Corridas
 from tabulate import tabulate
 datos = [
     0.3163,	0.4438,	0.5747,	0.1908,	0.2829,	0.6034,	0.2011,	0.6643,	0.9016,	0.2913,

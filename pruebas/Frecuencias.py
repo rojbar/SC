@@ -44,3 +44,4 @@ def acumula(datos):
             continue
         datos_acumulados.append(dato+datos_acumulados[index-1])
     return datos_acumulados
+    
