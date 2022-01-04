@@ -20,7 +20,7 @@ def puntoa():
     cadenaSignos = r"".join(signos)
     patron = rf"[{cadenaSignos}]([^{cadenaSignos}\s]+|\s[^{cadenaSignos}\s]+)"
     
-    libro = open("cien.txt")
+    libro = open("entradas/cien.txt")
     cadena = libro.read()
     libro.close()
     
@@ -45,7 +45,7 @@ def puntob():
     cadenaSignos = r"".join(signos)
     patron = rf"([^{cadenaSignos}]*)[{cadenaSignos}]"
     
-    libro = open("cien.txt")
+    libro = open("entradas/cien.txt")
     cadena = libro.read()
     libro.close()
     
