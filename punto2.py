@@ -1,5 +1,5 @@
-import pruebas.KolmogorovSmirov as KolmogorovSmirov
-import util
+from pruebas import KolmogorovSmirov
+from pruebas import util
 
 #implemente un generador lineal congruente con a = 100, m= 165123, c = 1234 y x0 = 32 y genere 10000 números. Trabaje con una confianza del 5 %
 def generador():

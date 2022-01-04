@@ -1,4 +1,4 @@
-import Frecuencias
+from . import Frecuencias
 import math
 from tabulate import tabulate
 
@@ -45,3 +45,4 @@ def chiCuadradoTabla(datos, confianza):
 
     cabecera = ["clase", "FO", "FE", "(FE-FO)^2/FE"]
     print(tabulate(res[0], cabecera, tablefmt="grid"))
+

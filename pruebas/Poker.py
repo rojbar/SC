@@ -1,7 +1,4 @@
-import math
-import ChiCuadrado
-import punto1
-import util
+from . import ChiCuadrado
 from tabulate import tabulate
 
 def obtenerDecimales(datos):

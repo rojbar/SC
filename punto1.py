@@ -1,7 +1,10 @@
 import re
-import pruebas.Corridas as Corridas
-import pruebas.ChiCuadrado as ChiCuadrado
-import util
+from pruebas import util
+from pruebas import Corridas
+from pruebas import ChiCuadrado
+from pruebas import Poker
+
+
 #https://docs.python.org/3/howto/regex.html#regex-howto
 
 # a) 
@@ -33,6 +36,7 @@ def puntoa():
         
     #print(numeros)
     return numeros
+
 # b)
 # Usando el mismo texto contar el número de caracteres que hay entre cada signo gramatical y generar 1000 números.
 def puntob():
@@ -58,23 +62,29 @@ def puntob():
         numeros.append(len(palabra))
         
     #print(numeros)
-    return numeros
-        
+    return numeros        
 
-#c
-
-#d
-def puntod():
-    datos_puntoa = puntoa()
-    datos_puntob = puntob()
+#c Para los dos generadores aplicar Implemente una prueba depóker, con k=3, recuerde generar los números con al menos 3,
+# su aplicación debe tener como salida la tabla en la que se evalúan los número.  Usando confianza del 5%
+def puntoc():
+    datos_puntoa = util.normalizar(puntoa())
+    datos_puntob = util.normalizar(puntob())
     CONFIANZA = 0.05
-    Corridas.mostrarCorridas(list(map(lambda x: x/util.max(datos_puntoa), datos_puntoa)), CONFIANZA)
-    Corridas.mostrarCorridas(list(map(lambda x: x/util.max(datos_puntob), datos_puntob)), CONFIANZA)
+    Poker.poker3Tabla(datos_puntoa, CONFIANZA)
+    Poker.poker3Tabla(datos_puntob, CONFIANZA)
+
+#d  Hacer pruebas de corridas para ambos puntos, usando la media como punto de comparación.
+def puntod():
+    datos_puntoa = util.normalizar(puntoa())
+    datos_puntob = util.normalizar(puntob())
+    CONFIANZA = 0.05
+    Corridas.mostrarCorridas(datos_puntoa, CONFIANZA)
+    Corridas.mostrarCorridas(datos_puntob, CONFIANZA)
 
 #e aplicar a ambos puntos pruebas de chi cuadrado. Con una confianza del 5%
 def puntoe():
-    datos_puntoa = puntoa()
-    datos_puntob = puntob()
+    datos_puntoa = util.normalizar(puntoa())
+    datos_puntob = util.normalizar(puntob())
     CONFIANZA = 0.05
-    ChiCuadrado.chiCuadradoTabla(list(map(lambda x: x/util.max(datos_puntoa), datos_puntoa)), 0.05)
-    ChiCuadrado.chiCuadradoTabla(list(map(lambda x: x/util.max(datos_puntob), datos_puntob)), 0.05)
+    ChiCuadrado.chiCuadradoTabla(datos_puntoa, CONFIANZA)
+    ChiCuadrado.chiCuadradoTabla(datos_puntob, CONFIANZA)

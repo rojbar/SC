@@ -1,6 +1,6 @@
+from . import Frecuencias
+from . import util
 import math
-import util
-import Frecuencias
 from tabulate import tabulate
 
 #los datos deben de pasarse normalizados

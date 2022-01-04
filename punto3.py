@@ -1,6 +1,6 @@
-import  pruebas.KolmogorovSmirov as KolmogorovSmirov
-import pruebas.Corridas as Corridas
-from tabulate import tabulate
+from pruebas import KolmogorovSmirov
+from pruebas import Corridas
+
 datos = [
     0.3163,	0.4438,	0.5747,	0.1908,	0.2829,	0.6034,	0.2011,	0.6643,	0.9016,	0.2913,
     0.1319,	0.6235,	0.6208,	0.9173,	0.2296,	0.6305,	0.7348,	0.3657,	0.425,	0.52,
