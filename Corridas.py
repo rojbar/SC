@@ -69,7 +69,6 @@ def corridasArribaAbajoMedia(datos,confianza):
     }
     es_random = abs(estadistico) < estadistico_normal[confianza]
     rango = [-1*estadistico_normal[confianza]*desviacion_estandar + media_esperada_corridas,  estadistico_normal[confianza]*desviacion_estandar + media_esperada_corridas]
-    print(rango)
     return [
         media,total_positivos, 
         total_negativos, 
@@ -78,7 +77,8 @@ def corridasArribaAbajoMedia(datos,confianza):
         desviacion_estandar,
         estadistico, 
         estadistico_normal[confianza], 
-        es_random]
+        es_random,
+        rango]
     
 def mostrarCorridas(datos, confianza):
     res = corridasArribaAbajoMedia(datos,confianza)
@@ -92,6 +92,7 @@ def mostrarCorridas(datos, confianza):
     estadistico_normal = res[7] 
     es_random = res[8]
 
+    print(f"rango de corridas: {res[9]}")
     print(f"Media de los datos: {media}")
     print(f"Total positivos: {total_positivos}") 
     print(f"Total negativos: {total_negativos}") 
