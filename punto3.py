@@ -1,5 +1,6 @@
 from pruebas import KolmogorovSmirov
 from pruebas import Corridas
+from pruebas import Series
 
 datos = [
     0.3163,	0.4438,	0.5747,	0.1908,	0.2829,	0.6034,	0.2011,	0.6643,	0.9016,	0.2913,
@@ -14,12 +15,17 @@ datos = [
 ]
 
 #Las siguientes pruebas de bondad usarlas con un valor de confianza de 0.1
-
 CONFIANZA = 0.1
+
 #a Realice una prueba deKolmogorov-Smirnov
-KolmogorovSmirov.kolmogorovTabla(datos,CONFIANZA)
+def puntoa():
+    KolmogorovSmirov.kolmogorovTabla(datos,CONFIANZA)
 
 #b. Realice una prueba de corridas por encima y debajo de la media
-Corridas.mostrarCorridas(datos,CONFIANZA)
+def puntob():
+    Corridas.mostrarCorridas(datos,CONFIANZA)
 
 #c. Realice una prueba de series con k=4.
+def puntoc():
+    Series.pruebaSeries(datos, CONFIANZA, 4)
+    
