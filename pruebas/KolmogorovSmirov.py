@@ -1,4 +1,3 @@
-from . import Frecuencias
 from . import util
 import math
 from tabulate import tabulate
@@ -6,19 +5,19 @@ from tabulate import tabulate
 #los datos deben de pasarse normalizados
 def pruebaKolmogorov_Smirov(datos, confianza):
     numero_datos = len(datos)
-    numero_clases = Frecuencias.numeroClases(numero_datos)
-    clases = Frecuencias.crearClases(int(numero_clases))
+    numero_clases = util.numeroClases(numero_datos)
+    clases = util.crearClases(int(numero_clases))
 
-    frecuencias_observadas = Frecuencias.frecuenciasObservadas(clases,datos)
-    frecuencias_esperadas = Frecuencias.frecuenciasEsperadas(numero_datos,numero_clases)
+    frecuencias_observadas = util.frecuenciasObservadas(clases,datos)
+    frecuencias_esperadas = util.frecuenciasEsperadas(numero_datos,numero_clases)
     
-    frecuencias_observadas_acumuladas = Frecuencias.acumula(frecuencias_observadas)
+    frecuencias_observadas_acumuladas = util.acumula(frecuencias_observadas)
 
     probabilidades_observadas = list(map(lambda x: x/numero_datos,frecuencias_observadas))
-    probabilidades_observadas_acumuladas = Frecuencias.acumula(probabilidades_observadas)
+    probabilidades_observadas_acumuladas = util.acumula(probabilidades_observadas)
     
     probabilidades_esperadas  = list(map(lambda x: x/numero_datos, frecuencias_esperadas))
-    probabilidades_esperadas_acumuladas = Frecuencias.acumula(probabilidades_esperadas)
+    probabilidades_esperadas_acumuladas = util.acumula(probabilidades_esperadas)
 
     pea_menos_pao = list(map(lambda poa,pea: abs(pea-poa), probabilidades_observadas_acumuladas, probabilidades_esperadas_acumuladas))
     dm = util.max(pea_menos_pao)

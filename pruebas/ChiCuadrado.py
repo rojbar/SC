@@ -1,4 +1,4 @@
-from . import Frecuencias
+from . import util
 import math
 from tabulate import tabulate
 
@@ -13,12 +13,12 @@ def calcularChiCuadrados(chis):
 
 def pruebaChiCuadrado(datos, confianza):
     numero_datos = len(datos)
-    numero_clases = Frecuencias.numeroClases(numero_datos)
-    clases = Frecuencias.crearClases(int(numero_clases))
+    numero_clases = util.numeroClases(numero_datos)
+    clases = util.crearClases(int(numero_clases))
     grados_libertad = numero_clases - 1
 
-    frecuencias_esperadas = Frecuencias.frecuenciasEsperadas(numero_datos, numero_clases)
-    frecuencias_observadas = Frecuencias.frecuenciasObservadas(clases, datos)
+    frecuencias_esperadas = util.frecuenciasEsperadas(numero_datos, numero_clases)
+    frecuencias_observadas = util.frecuenciasObservadas(clases, datos)
 
     chiCuadrados = list(map(lambda fe,fo: calcularChiCuadrado(fe,fo),frecuencias_esperadas,frecuencias_observadas))
     chiCuadrado = calcularChiCuadrados(chiCuadrados)
