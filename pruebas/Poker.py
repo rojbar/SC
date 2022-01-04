@@ -1,6 +1,7 @@
 from . import ChiCuadrado
 from tabulate import tabulate
 
+#obtiene los 3 decimales de una lista de numeros y los retorna como una lista de cadenas
 def obtenerDecimales(datos):
     decimales = []
     for dato in datos:
@@ -37,7 +38,7 @@ def pruebaPoker3(datos, confianza):
     clases = obtenerClasesK3()
     chiCuadrados = list(map(lambda fe, fo: ChiCuadrado.calcularChiCuadrado(fe, fo), frecuencias_esperadas,frecuencias_observadas))
     xCalc =ChiCuadrado.calcularChiCuadrados(chiCuadrados)
-    xCrit = 0
+    xCrit = 5.99 #valor critico para dos grados de libertad de chicuadrado
 
     pasa = True
     if(xCalc > xCrit):
@@ -58,20 +59,3 @@ def poker3Tabla(datos, confianza):
 
     cabecera = ["clase", "FO", "FE", "(FE-FO)^2/FE"]
     print(tabulate(res[0], cabecera, tablefmt="grid"))
-
-
-datos = [
-    0.3163,	0.4438,	0.5747,	0.1908,	0.2829,	0.6034,	0.2011,	0.6643,	0.9016,	0.2913,
-    0.1319,	0.6235,	0.6208,	0.9173,	0.2296,	0.6305,	0.7348,	0.3657,	0.425,	0.52,
-    0.7299,	0.3847,	0.685,	0.9083,	0.1024,	0.7366,	0.2248,	0.7218,	0.2277,	0.6495,
-    0.9208,	0.7804,	0.592,	0.7126,	0.8892,	0.7757,	0.7795,	0.6775,	0.3438,	0.2234,
-    0.2948,	0.6049,	0.7617,	0.5667,	0.0706,	0.4907,	0.0686,	0.4993,	0.7706,	0.591,
-    0.7113,	0.5349,	0.8835,	0.0349,	0.3063,	0.237,	0.0985,	0.7607,	0.5853,	0.9042,
-    0.0049,	0.962,	0.4767,	0.9255,	0.5806,	0.1856,	0.0508,	0.4864,	0.7624,	0.2841,
-    0.8394,	0.3062,	0.1635,	0.6599,	0.4443,	0.0346,	0.026,	0.2889,	0.6681,	0.764,
-    0.9723,	0.9096,	0.4579,	0.8236,	0.3435,	0.9882,	0.0777,	0.6874,	0.3303,	0.5752
-]
-
-print(len(datos))
-#print(obtenerDecimales(datos))
-poker3Tabla(datos, 0.05)
