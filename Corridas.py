@@ -68,7 +68,8 @@ def corridasArribaAbajoMedia(datos,confianza):
         0.5: 0.67
     }
     es_random = abs(estadistico) < estadistico_normal[confianza]
-
+    rango = [-1*estadistico_normal[confianza]*desviacion_estandar + media_esperada_corridas,  estadistico_normal[confianza]*desviacion_estandar + media_esperada_corridas]
+    print(rango)
     return [
         media,total_positivos, 
         total_negativos, 
