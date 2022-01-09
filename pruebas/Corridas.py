@@ -21,7 +21,7 @@ def contarCorridas(datos):
     positivo = 0
     negativo = 0
     anterior = 0
-    corridas = 0
+    corridas = 1
     for index,dato in enumerate(datos):
         if(dato == '+'):
             positivo += 1
@@ -68,7 +68,7 @@ def corridasArribaAbajoMedia(datos,confianza):
         0.5: 0.67
     }
     es_random = abs(estadistico) < estadistico_normal[confianza]
-    rango = [-1*estadistico_normal[confianza]*desviacion_estandar + media_esperada_corridas,  estadistico_normal[confianza]*desviacion_estandar + media_esperada_corridas]
+    rango = [-1*estadistico_normal[confianza]*desviacion_estandar + media_esperada_corridas,  estadistico_normal[confianza]*desviacion_estandar  + media_esperada_corridas ]
     return [
         media,total_positivos, 
         total_negativos, 
