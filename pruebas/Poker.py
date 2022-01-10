@@ -16,7 +16,7 @@ def obtenerClasesK3():
     ]
 
 def obtenerFrecuenciasEsperadas(total_datos):
-    return [0.01 * total_datos, 0.24*total_datos, 0.72*total_datos]
+    return [0.01 * total_datos, 0.27*total_datos, 0.72*total_datos]
 
 def obtenerFrecuencias(datos):
     iguales = 0
