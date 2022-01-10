@@ -27,5 +27,7 @@ def puntob():
 
 #c. Realice una prueba de series con k=4.
 def puntoc():
-    Series.pruebaSeries(datos, CONFIANZA, 4)
+    Series.seriesTabla(datos, CONFIANZA, 4)
+
+
     
