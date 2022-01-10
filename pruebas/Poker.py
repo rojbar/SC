@@ -8,13 +8,6 @@ def obtenerDecimales(datos):
         decimales.append(f'{int(dato * (1000))/(1000):.3f}'[2:])
     return decimales
 
-def obtenerClasesK3():
-    return [ 
-        "3 IGUALES",
-        "2 IGUALES 1 DIFERENTE",
-        "3 DIFERENTES"
-    ]
-
 def obtenerFrecuenciasEsperadas(total_datos):
     return [0.01 * total_datos, 0.27*total_datos, 0.72*total_datos]
 
@@ -35,7 +28,11 @@ def pruebaPoker3(datos, confianza):
     datos_decimales = obtenerDecimales(datos)
     frecuencias_observadas = obtenerFrecuencias(datos_decimales)
     frecuencias_esperadas = obtenerFrecuenciasEsperadas(len(datos_decimales))
-    clases = obtenerClasesK3()
+    clases = [ 
+        "3 IGUALES",
+        "2 IGUALES 1 DIFERENTE",
+        "3 DIFERENTES"
+    ]
     chiCuadrados = list(map(lambda fe, fo: ChiCuadrado.calcularChiCuadrado(fe, fo), frecuencias_esperadas,frecuencias_observadas))
     xCalc = sum(chiCuadrados)
     xCrit = 5.99 #valor critico para dos grados de libertad de chicuadrado
