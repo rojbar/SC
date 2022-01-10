@@ -5,12 +5,6 @@ from tabulate import tabulate
 def calcularChiCuadrado(frecuencia_esperada, frecuencia_observada):
     return math.pow((frecuencia_esperada - frecuencia_observada),2)/frecuencia_esperada
 
-def calcularChiCuadrados(chis):
-    resultado = 0
-    for chi in chis:
-        resultado += chi
-    return resultado
-
 def pruebaChiCuadrado(datos, confianza):
     numero_datos = len(datos)
     numero_clases = util.numeroClases(numero_datos)
@@ -21,7 +15,7 @@ def pruebaChiCuadrado(datos, confianza):
     frecuencias_observadas = util.frecuenciasObservadas(clases, datos)
 
     chiCuadrados = list(map(lambda fe,fo: calcularChiCuadrado(fe,fo),frecuencias_esperadas,frecuencias_observadas))
-    chiCuadrado = calcularChiCuadrados(chiCuadrados)
+    chiCuadrado = sum(chiCuadrados)
 
     #http://www.mat.uda.cl/hsalinas/cursos/2010/eyp2/Tabla%20Chi-Cuadrado.pdf
     estadistico = {0.05: 44.985} #para 31 grados de libertad

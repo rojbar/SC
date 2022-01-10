@@ -17,7 +17,7 @@ def pruebaSeries(datos, confianza, dimensiones):
     frecuencias_observadas = frecuenciasObservadas(datos_agrupados) 
     frecuencia_esperada = total_grupos/total_clases_por_dimension
     chiCuadrados = list(map(lambda fo: ChiCuadrado.calcularChiCuadrado(frecuencia_esperada,fo),frecuencias_observadas.values()))
-    xcalc = ChiCuadrado.calcularChiCuadrados(chiCuadrados)
+    xcalc = sum(chiCuadrados)
     xcrit = 0
     
 #retorna los posibles combinaciones de clases que puede tener un vector para cada uno de sus numeros

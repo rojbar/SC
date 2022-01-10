@@ -37,7 +37,7 @@ def pruebaPoker3(datos, confianza):
     frecuencias_esperadas = obtenerFrecuenciasEsperadas(len(datos_decimales))
     clases = obtenerClasesK3()
     chiCuadrados = list(map(lambda fe, fo: ChiCuadrado.calcularChiCuadrado(fe, fo), frecuencias_esperadas,frecuencias_observadas))
-    xCalc =ChiCuadrado.calcularChiCuadrados(chiCuadrados)
+    xCalc = sum(chiCuadrados)
     xCrit = 5.99 #valor critico para dos grados de libertad de chicuadrado
 
     pasa = True
