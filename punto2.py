@@ -19,3 +19,5 @@ def puntoa():
     datos = generador()
     maximo = util.max(datos)
     KolmogorovSmirov.kolmogorovTabla( list(map(lambda x: x/maximo, datos )) , 0.05)
+
+# puntoa()

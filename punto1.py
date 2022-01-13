@@ -34,7 +34,7 @@ def puntoa():
             break
         numeros.append(len(palabra.split()[0]))
         
-    #print(numeros)
+    # print(numeros)
     return numeros
 
 # b)
@@ -61,7 +61,7 @@ def puntob():
             break
         numeros.append(len(palabra))
         
-    #print(numeros)
+    # print(numeros)
     return numeros        
 
 #c Para los dos generadores aplicar Implemente una prueba depóker, con k=3, recuerde generar los números con al menos 3,
@@ -88,3 +88,9 @@ def puntoe():
     CONFIANZA = 0.05
     ChiCuadrado.chiCuadradoTabla(datos_puntoa, CONFIANZA)
     ChiCuadrado.chiCuadradoTabla(datos_puntob, CONFIANZA)
+
+# puntoa()
+# puntob()
+# puntoc()
+# puntod()
+# puntoe()

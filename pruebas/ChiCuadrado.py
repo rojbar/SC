@@ -33,10 +33,9 @@ def chiCuadradoTabla(datos, confianza):
     print(f"X^2crit = {res[2]}")
 
     if(res[3]):
-        print("El generador es bueno en cuanto a uniformidad pues dmcalc es menor o igual a dmcritico")
+        print("El generador es bueno en cuanto a uniformidad pues el valor calculado es menor o igual al critico")
     else:
-        print("El generador no es bueno en cuanto a uniformidad dmcalc  no es menor o igual a dmcritico")
-
+        print("El generador no es bueno en cuanto a uniformidad pues el valor calculado es mayor al critico")
     cabecera = ["clase", "FO", "FE", "(FE-FO)^2/FE"]
     print(tabulate(res[0], cabecera, tablefmt="grid"))
 

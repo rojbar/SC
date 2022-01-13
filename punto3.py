@@ -29,5 +29,7 @@ def puntob():
 def puntoc():
     Series.seriesTabla(datos, CONFIANZA, 4)
 
-
+# puntoa()
+# puntob()
+# puntoc()
     
