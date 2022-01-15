@@ -18,7 +18,7 @@ def pruebaChiCuadrado(datos, confianza):
     chiCuadrado = sum(chiCuadrados)
 
     #http://www.mat.uda.cl/hsalinas/cursos/2010/eyp2/Tabla%20Chi-Cuadrado.pdf
-    estadistico = {0.05:81.449 } #para 31 grados de libertad
+    estadistico = {0.01:14.68 } #para 31 grados de libertad
 
     pasa = chiCuadrado <= estadistico[confianza]
 
