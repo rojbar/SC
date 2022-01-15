@@ -90,7 +90,7 @@ def punto3():
     Series.seriesTabla(datos,0.1,2)
     # Corridas.mostrarCorridasCrecimiento(datos,0.1)
     # Corridas.mostrarCorridas(datos,0.1)
-    ChiCuadrado.chiCuadradoTabla(datos,0.01)
+    ChiCuadrado.chiCuadradoTabla(datos,0.1)
 
 punto3()
 #Pruebas 
