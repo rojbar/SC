@@ -35,15 +35,15 @@ def pruebaPoker3(datos, confianza):
     ]
     chiCuadrados = list(map(lambda fe, fo: ChiCuadrado.calcularChiCuadrado(fe, fo), frecuencias_esperadas,frecuencias_observadas))
     xCalc = sum(chiCuadrados)
-    xCrit = 5.99 #valor critico para dos grados de libertad de chicuadrado
+    xCrit = {0.05: 5.99, 0.1: 4.605} #valor critico para dos grados de libertad de chicuadrado
 
     pasa = True
-    if(xCalc > xCrit):
+    if(xCalc > xCrit[confianza]):
         pasa = False
     res = []
     for fila in zip(clases,frecuencias_observadas, frecuencias_esperadas, chiCuadrados):
          res.append(fila)
-    return  [res, xCalc, xCrit, pasa]
+    return  [res, xCalc, xCrit[confianza], pasa]
 
 def poker3Tabla(datos, confianza):
     res = pruebaPoker3(datos, confianza)
