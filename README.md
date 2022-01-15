@@ -1,5 +1,5 @@
 # SC
 ## Dependencias
 - tabulate
-
+- matplotlib
 
