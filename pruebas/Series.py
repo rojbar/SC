@@ -4,8 +4,8 @@ from pruebas.util import frecuenciaObservada
 from . import ChiCuadrado
 from tabulate import tabulate
 #agrupa los datos en vectores de cuatro dimensiones
-def agruparDatos(datos):
-    return [datos[x:x+4] for x in range(0, len(datos), 4)]
+def agruparDatos(datos,dimensiones):
+    return [datos[x:x+dimensiones] for x in range(0, len(datos), dimensiones)]
 
 
 def pruebaSeries(datos, confianza, dimensiones):
@@ -15,13 +15,18 @@ def pruebaSeries(datos, confianza, dimensiones):
 
     clases_por_dimension = math.ceil(math.pow( math.sqrt(total_grupos),1/dimensiones))
     total_clases_por_dimension =  math.pow(clases_por_dimension,dimensiones)
-    
-    datos_agrupados = agruparDatos(datos)
-    frecuencias_observadas = frecuenciasObservadas(datos_agrupados) 
+    datos_agrupados = agruparDatos(datos,dimensiones)
+    #para el de 3 dimensiones
+    # frecuencias_observadas = frecuenciasObservadas(datos_agrupados) 
+    #para el de 2 dimensiones
+    print(datos_agrupados)
+    frecuencias_observadas = frecuenciasObservadasTres(datos_agrupados) 
     frecuencia_esperada = total_grupos/total_clases_por_dimension
     chiCuadrados = list(map(lambda fo: ChiCuadrado.calcularChiCuadrado(frecuencia_esperada,fo),frecuencias_observadas.values()))
     xcalc = sum(chiCuadrados)
-    xcrit = 22.307
+    # xcrit = 22.307
+    # xcrit=12.02 #xcrit para grado 7
+    xcrit=13.36 #xcrit para grado 8
     return [xcalc,xcrit,frecuencias_observadas,frecuencia_esperada,chiCuadrados]
 
     
@@ -36,6 +41,23 @@ def posiblesCombinaciones():
                     
                 for l in [1,2]:
                     cuenta[f'{i}-{j}-{k}-{l}']=0
+    return cuenta
+def posiblesCombinaciones3Dimensiones():
+    cuenta={}
+    for i in [1,2]:
+            
+        for j in [1,2]:
+                
+            for k in [1,2]:
+                    
+                cuenta[f'{i}-{j}-{k}']=0
+    return cuenta
+def posiblesCombinaciones2Dimensiones():
+    cuenta={}
+    for i in [1,2,3]:
+            
+        for j in [1,2,3]:
+                cuenta[f'{i}-{j}']=0
     return cuenta
 
 # se tienen dos intervalos [0, 0.5),[0.5, 1]
@@ -53,7 +75,29 @@ def frecuenciasObservadas(datos):
     
     combinaciones.pop()
 
-    posibles_combinaciones = posiblesCombinaciones()
+    posibles_combinaciones = posiblesCombinaciones3Dimensiones()
+
+    for combinacion in combinaciones:
+        posibles_combinaciones[combinacion]+=1
+    
+    return posibles_combinaciones
+# se tienen tres intervalos [0, 0.3),[0.3, 0.6),[0.6, 1]
+def frecuenciasObservadasTres(datos):
+    combinaciones=[]
+    for dato in datos:
+        clase=''
+        for numero in dato:
+            if(numero<0.33333):
+                clase+='1-'
+            elif(numero<0.66666):
+                clase+='2-'
+            else: clase+='3-'
+        clase=clase[:-1]
+        combinaciones.append(clase)
+    
+    combinaciones.pop()
+
+    posibles_combinaciones = posiblesCombinaciones2Dimensiones()
 
     for combinacion in combinaciones:
         posibles_combinaciones[combinacion]+=1
@@ -62,6 +106,7 @@ def frecuenciasObservadas(datos):
 
 def seriesTabla(datos, confianza,dimensiones):
     res = pruebaSeries(datos,confianza,dimensiones)
+    print('entro')
     print(f"X^2 = {res[0]}")
     print(f"X^2crit = {res[1]}")
 

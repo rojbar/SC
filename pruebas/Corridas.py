@@ -102,4 +102,64 @@ def mostrarCorridas(datos, confianza):
     print(f"Estadistico calculado: {estadistico}")
     print(f"Estadistico normal: {estadistico_normal}") 
     print(f"Es el generador aleatorio? : {es_random}")
+
+def calcularCorridas(datos):
+    corridas=[]
+    for index,numb in enumerate(datos[1:]):
+        if(numb>= datos[index-1]):
+            corridas.append('+')
+        else: corridas.append('-')
+    return corridas
+
+
+
+def corridasCrecimiento(datos,confianza):
+    datos_formateado = calcularCorridas(datos)
+    # datos_formateado = formatearDatos(datos, media)
+    total_positivos, total_negativos, total_corridas = contarCorridas(datos_formateado)
+    media_esperada_corridas = calcularMediaCorridas(total_positivos, total_negativos)
+    desviacion_estandar = math.sqrt(caclularVarianzaCorridas(total_positivos, total_negativos))
+    estadistico = calcularEstadistico(media_esperada_corridas,desviacion_estandar, total_corridas)
+
+    estadistico_normal = {
+        0.05: 1.96,
+        0.06: 1.88,
+        0.07: 1.81,
+        0.08: 1.75,
+        0.09: 1.69,
+        0.1: 1.65,
+        0.2: 1.28,
+        0.377: 1,
+        0.5: 0.67
+    }
+    es_random = abs(estadistico) < estadistico_normal[confianza]
+    rango = [-1*estadistico_normal[confianza]*desviacion_estandar + media_esperada_corridas,  estadistico_normal[confianza]*desviacion_estandar  + media_esperada_corridas ]
+    return [
+        total_positivos, 
+        total_negativos, 
+        total_corridas, 
+        desviacion_estandar,
+        abs(estadistico), 
+        estadistico_normal[confianza], 
+        es_random,
+        rango]
+    
+def mostrarCorridasCrecimiento(datos, confianza):
+    res = corridasCrecimiento(datos,confianza)
+    total_positivos = res[0]
+    total_negativos = res[1]
+    total_corridas = res[2]
+    desviacion_estandar = res[3]
+    estadistico = res[4]
+    estadistico_normal = res[5] 
+    es_random = res[6]
+
+    print(f"rango de corridas: {res[7]}")
+    print(f"Total positivos: {total_positivos}") 
+    print(f"Total negativos: {total_negativos}") 
+    print(f"Total corridas: {total_corridas}")
+    print(f"Desviacion estandar: {desviacion_estandar}")
+    print(f"Estadistico calculado: {estadistico}")
+    print(f"Estadistico normal: {estadistico_normal}") 
+    print(f"Es el generador aleatorio? : {es_random}")
      
