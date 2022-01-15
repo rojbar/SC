@@ -1,5 +1,6 @@
 import math
 from . import ChiCuadrado
+import itertools
 from tabulate import tabulate
 
 
@@ -16,11 +17,8 @@ def pruebaSeries(datos, confianza, dimensiones):
     clases_por_dimension = math.ceil(math.pow( math.sqrt(total_grupos),1/dimensiones))
     total_clases_por_dimension =  math.pow(clases_por_dimension,dimensiones)
     datos_agrupados = agruparDatos(datos,dimensiones)
-    #para el de 3 dimensiones
-    # frecuencias_observadas = frecuenciasObservadas(datos_agrupados) 
-    #para el de 2 dimensiones
-    print(datos_agrupados)
-    frecuencias_observadas = frecuenciasObservadasTres(datos_agrupados) 
+    frecuencias_observadas = frecuenciasObservadas(datos_agrupados,dimensiones,clases_por_dimension) 
+
     frecuencia_esperada = total_grupos/total_clases_por_dimension
     chiCuadrados = list(map(lambda fo: ChiCuadrado.calcularChiCuadrado(frecuencia_esperada,fo),frecuencias_observadas.values()))
     xcalc = sum(chiCuadrados)
@@ -31,78 +29,42 @@ def pruebaSeries(datos, confianza, dimensiones):
 
     
 #retorna los posibles combinaciones de clases que puede tener un vector para cada uno de sus numeros
-def posiblesCombinaciones():
+def posiblesCombinaciones(dimensiones,clasesPorDimension):
+    clases = list(itertools.product([i for i in range(1,clasesPorDimension+1)],repeat=dimensiones))
+
     cuenta={}
-    for i in [1,2]:
-            
-        for j in [1,2]:
-                
-            for k in [1,2]:
-                    
-                for l in [1,2]:
-                    cuenta[f'{i}-{j}-{k}-{l}']=0
-    return cuenta
-def posiblesCombinaciones3Dimensiones():
-    cuenta={}
-    for i in [1,2]:
-            
-        for j in [1,2]:
-                
-            for k in [1,2]:
-                    
-                cuenta[f'{i}-{j}-{k}']=0
-    return cuenta
-def posiblesCombinaciones2Dimensiones():
-    cuenta={}
-    for i in [1,2,3]:
-            
-        for j in [1,2,3]:
-                cuenta[f'{i}-{j}']=0
+    for clase in clases:
+            cadena=''
+            for numero in clase:
+                cadena+=str(numero)+'-'
+
+            cuenta[cadena[:-1]]=0
+    
     return cuenta
 
-# se tienen dos intervalos [0, 0.5),[0.5, 1]
-def frecuenciasObservadas(datos):
+
+def frecuenciasObservadas(datos,dimensiones,clasesPorDimension):
+    intervalos=[i*1/clasesPorDimension for i in range(0,clasesPorDimension+1)]
+
     combinaciones=[]
     for dato in datos:
         clase=''
         for numero in dato:
-            if(numero<0.5):
-                clase+='1-'
-            else:
-                clase+='2-'
+            for index,intervalo in enumerate(intervalos):
+                if(numero<=intervalo):
+                    clase+=f'{str(index)}-'
+                    break
         clase=clase[:-1]
         combinaciones.append(clase)
     
     combinaciones.pop()
-
-    posibles_combinaciones = posiblesCombinaciones3Dimensiones()
+    posibles_combinaciones = posiblesCombinaciones(dimensiones,clasesPorDimension)
 
     for combinacion in combinaciones:
         posibles_combinaciones[combinacion]+=1
     
     return posibles_combinaciones
-# se tienen tres intervalos [0, 0.3),[0.3, 0.6),[0.6, 1]
-def frecuenciasObservadasTres(datos):
-    combinaciones=[]
-    for dato in datos:
-        clase=''
-        for numero in dato:
-            if(numero<0.33333):
-                clase+='1-'
-            elif(numero<0.66666):
-                clase+='2-'
-            else: clase+='3-'
-        clase=clase[:-1]
-        combinaciones.append(clase)
-    
-    combinaciones.pop()
 
-    posibles_combinaciones = posiblesCombinaciones2Dimensiones()
-
-    for combinacion in combinaciones:
-        posibles_combinaciones[combinacion]+=1
-    
-    return posibles_combinaciones
 
 def seriesTabla(datos, confianza,dimensiones):
     res = pruebaSeries(datos,confianza,dimensiones)
@@ -117,6 +79,5 @@ def seriesTabla(datos, confianza,dimensiones):
   
     cabecera = ["clase", "FO", "FE", "(FE-FO)^2/FE"]
     values= [(clase,res[2][clase],res[3],res[4][index]) for index,clase in enumerate(res[2].keys())]
-    # print(values)
     print(tabulate(values, cabecera, tablefmt="grid"))
   

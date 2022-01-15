@@ -46,7 +46,7 @@ def generador(semilla=0,cantidad=100):
 
 #punto 1.2.a
 def punto1_2_a():
-    datos = generador(cantidad=1000000)
+    datos = generador(cantidad=100000)
     numerosAleatorios = util.normalizar(datos)
     #x va de -3 hasta 3
     F=[0.00135, 0.00187, 0.00256, 0.00347, 0.00466, 0.00621, 0.00820, 0.01072, 0.0139,
@@ -67,23 +67,23 @@ def punto1_2_a():
                         xk=-3+0.1*fxk
                         xk1=-3+0.1*fxk1
                         lamb=(F[fxk1]-r)/(F[fxk1]-F[fxk])
-                        a=lamb*(xk) + (1-lamb)*(xk1)
+                        a=lamb*(xk) + (1-lamb)*(xk1) 
                         numerosDistNormal.append(a)
-                        # print(xk,F[fxk], '-',xk1,F[fxk1], r)
                         break
                 break
-    # print(len(numerosDistNormal))
-    intervalos= util.crearClases(util.numeroClases(1000000))
-    fo= util.frecuenciasObservadas(intervalos,numerosDistNormal)
-    # print(fo)
+    maxa=max(numerosDistNormal)
+    numerosDistNormal=[i+maxa for i in numerosDistNormal]
+    intervalos= util.crearClases(util.numeroClases(100000))
+    fo= util.frecuenciasObservadas(intervalos,util.normalizar(numerosDistNormal))
     plt.plot(list(map(lambda a: a[1], intervalos)),fo)
     plt.ylabel('frecuencia observada')
     plt.show()
+    # return numerosDistNormal
 
 
 #punto1.2.b
 def punto1_2_b():
-    datos = generador(cantidad=1000000)
+    datos = generador(cantidad=100)
     datos = util.normalizar(datos)
     datos_exponencial = distribucion_exponencial(datos, 2.1)
 
@@ -94,11 +94,12 @@ def punto1_2_b():
     plt.plot(list(map( lambda a: a[1], intervalos)),fo)
     plt.ylabel('frecuencia observada')
     plt.show()
+    return datos_exponencial
 
 
 #punto1.2.c
 def punto1_2_c():
-    numerosAleatorios=util.normalizar(generador(cantidad=10000000))
+    numerosAleatorios=util.normalizar(generador(cantidad=100))
     lamb=3.5
     numerosPoisson=[]
     for numero in numerosAleatorios:
@@ -111,7 +112,7 @@ def punto1_2_c():
             i+=1
         X=i
         numerosPoisson.append(i)
-    intervalos= util.crearClases(util.numeroClases(1000))
+    intervalos= util.crearClases(util.numeroClases(100))
     fo= util.frecuenciasObservadas(intervalos,util.normalizar(numerosPoisson))
     plt.plot(list(map(lambda a: a[1], intervalos)),fo)
     plt.ylabel('frecuencia observada')
@@ -121,7 +122,7 @@ def punto1_2_c():
 
 # d ) Binomial (n = 100, p = 0.3)
 def punto1_2_d():
-    datos = generador(cantidad=1000000)
+    datos = generador(cantidad=10000)
     datos = util.normalizar(datos)
     datos_bernoulli =  distribucion_bernoulli(datos, 0.3, 100)
 
@@ -131,16 +132,34 @@ def punto1_2_d():
     plt.plot(list(map( lambda a: a[1], intervalos)),fo)
     plt.ylabel('frecuencia observada')
     plt.show()
+    return datos_bernoulli
 
 
 def punto2():
     datos=util.normalizar(generador(cantidad=100))
+    print('---------------------------------------------------------------')
+    print('PRUEBA DE SERIES DE 2 DIMENSIONES')
+    print('---------------------------------------------------------------')
     Series.seriesTabla(datos,0.1,2)
+    print('---------------------------------------------------------------')
+    print('PRUEBA DE SERIES DE 3 DIMENSIONES')
+    print('---------------------------------------------------------------')
+    Series.seriesTabla(datos,0.1,3)
+    print('---------------------------------------------------------------')
+    print('PRUEBA DE CORRIDAS DE CRECIMIENTO')
+    print('---------------------------------------------------------------')
     Corridas.mostrarCorridasCrecimiento(datos,0.1)
-    Corridas.mostrarCorridas(datos,0.1)
+    print('---------------------------------------------------------------')
+    print('PRUEBA DE CORRIDAS DE MEDIA')
+    print('---------------------------------------------------------------')
+    Corridas.mostrarCorridasMedia(datos,0.1)
+    print('---------------------------------------------------------------')
+    print('PRUEBA DE CHI CUADRADO')   
+    print('---------------------------------------------------------------')
     ChiCuadrado.chiCuadradoTabla(datos,0.1)
+    print('---------------------------------------------------------------')
+    print('PRUEBA DE POKER')
+    print('---------------------------------------------------------------')
     Poker.poker3Tabla(util.normalizar(datos), 0.1)
 
-
-
-punto1_2_d()
+punto2()

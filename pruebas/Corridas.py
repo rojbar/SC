@@ -80,7 +80,7 @@ def corridasArribaAbajoMedia(datos,confianza):
         es_random,
         rango]
     
-def mostrarCorridas(datos, confianza):
+def mostrarCorridasMedia(datos, confianza):
     res = corridasArribaAbajoMedia(datos,confianza)
     media = res[0]
     total_positivos = res[1]
