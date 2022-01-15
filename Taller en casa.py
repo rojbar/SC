@@ -162,4 +162,3 @@ def punto2():
     print('---------------------------------------------------------------')
     Poker.poker3Tabla(util.normalizar(datos), 0.1)
 
-punto2()
