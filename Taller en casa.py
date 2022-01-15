@@ -46,7 +46,7 @@ def generador(semilla=0,cantidad=100):
 
 #punto 1.2.a
 def punto1_2_a():
-    datos = generador(122,100000)
+    datos = generador(cantidad=1000000)
     numerosAleatorios = util.normalizar(datos)
     #x va de -3 hasta 3
     F=[0.00135, 0.00187, 0.00256, 0.00347, 0.00466, 0.00621, 0.00820, 0.01072, 0.0139,
@@ -69,13 +69,13 @@ def punto1_2_a():
                         lamb=(F[fxk1]-r)/(F[fxk1]-F[fxk])
                         a=lamb*(xk) + (1-lamb)*(xk1)
                         numerosDistNormal.append(a)
-                        print(xk,F[fxk], '-',xk1,F[fxk1], r)
+                        # print(xk,F[fxk], '-',xk1,F[fxk1], r)
                         break
                 break
-    print(len(numerosDistNormal))
-    intervalos= util.crearClases(util.numeroClases(100000))
+    # print(len(numerosDistNormal))
+    intervalos= util.crearClases(util.numeroClases(1000000))
     fo= util.frecuenciasObservadas(intervalos,numerosDistNormal)
-    print(fo)
+    # print(fo)
     plt.plot(list(map(lambda a: a[1], intervalos)),fo)
     plt.ylabel('frecuencia observada')
     plt.show()
@@ -83,7 +83,7 @@ def punto1_2_a():
 
 #punto1.2.b
 def punto1_2_b():
-    datos = generador(30,100)
+    datos = generador(cantidad=1000000)
     datos = util.normalizar(datos)
     datos_exponencial = distribucion_exponencial(datos, 2.1)
 
@@ -98,7 +98,7 @@ def punto1_2_b():
 
 #punto1.2.c
 def punto1_2_c():
-    numerosAleatorios=util.normalizar(generador(cantidad=1000))
+    numerosAleatorios=util.normalizar(generador(cantidad=10000000))
     lamb=3.5
     numerosPoisson=[]
     for numero in numerosAleatorios:
@@ -112,7 +112,6 @@ def punto1_2_c():
         X=i
         numerosPoisson.append(i)
     intervalos= util.crearClases(util.numeroClases(1000))
-    print(intervalos)
     fo= util.frecuenciasObservadas(intervalos,util.normalizar(numerosPoisson))
     plt.plot(list(map(lambda a: a[1], intervalos)),fo)
     plt.ylabel('frecuencia observada')
@@ -122,7 +121,7 @@ def punto1_2_c():
 
 # d ) Binomial (n = 100, p = 0.3)
 def punto1_2_d():
-    datos = generador(30,100)
+    datos = generador(cantidad=1000000)
     datos = util.normalizar(datos)
     datos_bernoulli =  distribucion_bernoulli(datos, 0.3, 100)
 
@@ -144,3 +143,4 @@ def punto2():
 
 
 
+punto1_2_d()
