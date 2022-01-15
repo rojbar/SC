@@ -125,10 +125,10 @@ def punto1_2_d():
     datos = util.normalizar(datos)
     datos_bernoulli =  distribucion_bernoulli(datos, 0.3, 100)
 
-    print(datos_bernoulli)
-    intervalos = [10,20,30,40,50,60,70,80,90,100] 
+    intervalos = util.crearClases(util.numeroClases(len(datos_bernoulli)))
+    fo = util.frecuenciasObservadas(intervalos, util.normalizar(datos_bernoulli))
 
-    plt.plot(intervalos,datos_bernoulli)
+    plt.plot(list(map( lambda a: a[1], intervalos)),fo)
     plt.ylabel('frecuencia observada')
     plt.show()
 
