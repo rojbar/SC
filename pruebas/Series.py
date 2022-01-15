@@ -1,9 +1,9 @@
 import math
-
-from pruebas.util import frecuenciaObservada
 from . import ChiCuadrado
 from tabulate import tabulate
-#agrupa los datos en vectores de cuatro dimensiones
+
+
+#agrupa los datos en vectores de n dimensiones
 def agruparDatos(datos,dimensiones):
     return [datos[x:x+dimensiones] for x in range(0, len(datos), dimensiones)]
 
